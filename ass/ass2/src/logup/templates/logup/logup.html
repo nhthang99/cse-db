@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Log up</title>
+	</head>
+	<style>
+		body{
+			background-color: #3498db;
+		}
+		#image{
+			width: 200px;
+			height: 200px;
+			position: absolute;
+			left: 150px;
+			top: 150px;
+		}
+		#boxForm{
+			width: 550px;
+			height: 540px;
+			margin: 0 auto;
+			background-color: #f6e58d;
+			border: 1px solid #f6e58d;
+			border-radius: 10px;
+		}
+		#form{
+			margin: 20px;
+			border: 1px solid #f6e58d;
+			font-size: 20px;
+			position: relative; 
+		}
+		#form input{
+			width: 300px;
+			height: 20px;
+			position: absolute;
+			right: 10px;
+		}
+		#form select{
+			width: 305px;
+			height: 25px;
+			position: absolute;
+			right: 10px;
+		}
+		#btn{
+			padding: 10px;
+			margin-left: 230px;
+			border-radius: 5px;
+			background-color: #27ae60;
+			color: #ecf0f1;
+			text-decoration: none;
+			font-weight: bold;
+			transition: color 0.5s, background-color 0.5s;
+		}
+		#btn:hover{
+			background-color: #ecf0f1;
+			color: #27ae60;
+		}
+		#login{
+			margin-left: 150px;
+			font-style: italic;
+		}
+	</style>
+	<body>
+		<img id="image" src="https://yt3.ggpht.com/a/AGF-l7_W5FLn4COWPLOuqRwDryNjR5Z5QNikB3qf0Q=s900-c-k-c0xffffffff-no-rj-mo">
+		<p></p>
+		<form id="boxForm" method="GET">
+			{% csrf_token %}
+			<div id="form">
+				<span>Họ</span>
+				<input type="text" name="Ho">
+			</div>
+			<div id="form">
+				<span>Tên</span>
+				<input type="text" name="Ten">
+			</div>
+			<div id="form">
+				<span>Tên đường</span>
+				<input type="text" name="TenDuong">
+			</div>
+			<div id="form">
+				<span>Số nhà</span>
+				<input type="text" name="SoNha">
+			</div>
+			<div id="form">
+				<span>Tỉnh/Thành phố</span>
+				<input type="text" name="TinhTP">
+			</div>
+			<div id="form">
+				<span>Giới tính</span>
+				<select name = "GioiTinh">
+					<option>Nam</option>
+					<option>Nữ</option>
+					<option>Khác</option>
+				</select>
+			</div>
+			<div id="form">
+				<span>User name</span>
+				<input type="text" name="Username">
+			</div>
+			<div id="form">
+				<span>Password</span>
+				<input type="password" name="Password">
+			</div>
+			<input id = "btn" type="submit" name="" value="Đăng ký">
+			<p id=login>
+				Quay lại cửa sổ đăng nhập
+				<a href="login/">tại đây</a>
+			</p>
+		</form>		
+	</body>
+</html>

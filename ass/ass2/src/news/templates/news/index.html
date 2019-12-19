@@ -1,0 +1,89 @@
+{% extends 'news/base.html' %}
+
+{% block title %}
+    Tin tức
+{% endblock title %}
+
+{% block body %}     
+<form style="margin-left: 120px; margin-right: 120px; margin-top: 30px;" method="GET"> 
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="title">Tiêu đề</label>
+            <input type="text" class="form-control" placeholder="Nhập tiêu đề" id="title" style="font-size:15px; height: 30px; margin-right: 10px;" name="title">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="type">Loại</label>
+            <input type="text" class="form-control" placeholder="Nhập loại" id="type" style="font-size:15px; height: 30px; margin-right: 10px;" name="type">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="time">Thời gian</label>
+            <input type="date" class="form-control" placeholder="Nhập thời gian" id="time" style="font-size:15px; height: 30px; margin-right: 10px;" name="time">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="content">Nội dung</label>
+            <input type="text" class="form-control" placeholder="Nhập nội dung" id="content" style="font-size:15px; height: 30px; margin-right: 10px;" name="content">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="writer_id">ID Nhân viên</label>
+            <input type="text" class="form-control" placeholder="Nhập ID NV" id="writer_id" style="font-size:15px; height: 30px; margin-right: 10px;" name="staff_id">
+        </div>
+    </div>
+    <div >
+        <input type="text" class="form-control" placeholder="Keyword" id="keyword" style="font-size:15px;width: 150px; height: 30px; margin-right: 10px;" name="keyword">
+        <button type="submit" class="btn btn btn-outline-secondary btn-lg" style="height: 30px;width: 60px; margin-right: 10px; margin-top: 10px;" name="search">Tìm</button>
+        <button type="submit" class="btn btn-outline-success btn-lg" style="height: 30px;width: 60px; margin-right: 10px; margin-top: 10px;" name="add">Thêm</button>
+        <button type="submit" class="btn btn-outline-warning btn-lg" style="height: 30px;width: 60px; margin-right: 10px; margin-top: 10px;" name="edit">Sửa</button>
+    </div>
+</form>
+
+
+<div style="margin-top: 10px;">
+    <div class="container">
+        
+        <div class="row">
+            
+            {% for n in news %}
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top max-width: 100%; height: auto;" src={{ n.5 }} alt=""></a>
+                        <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">{{ n.1 }}</a>
+                        </h4>
+                        <p class="card-text">{{ n.4 }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <!-- /.row -->
+        
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Trước</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">2</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">3</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Sau</span>
+                </a>
+            </li>
+        </ul>  
+    </div>            
+</div>
+{% endblock body %}

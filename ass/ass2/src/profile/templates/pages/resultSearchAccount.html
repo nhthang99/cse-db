@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>View_pUser</title>
+</head>
+<body>
+    <h1>KẾT QUẢ TÌM KIẾM</h1>
+    <table border="1" bgcolor = #78e08f>
+        <tr bgcolor = #eb2f06>
+            <th>ID</th>
+            <th>Họ</th>
+            <th>Tên</th>
+            <th>Tên đường</th>
+            <th>Số nhà</th>
+            <th>Tỉnh/ Thành phố</th>
+            <th>Giới tính</th>
+            <th>Username</th>
+            <th>Password</th>
+        </tr>
+        {%for x in thanh.account%}
+		<tr>
+			<td>{{x.0}}</td>
+			<td>{{x.1}}</td>
+			<td>{{x.2}}</td>
+			<td>{{x.3}}</td>
+			<td>{{x.4}}</td>
+			<td>{{x.5}}</td>
+			<td>{{x.6}}</td>
+			<td>{{x.7}}</td>
+            <td>{{x.8}}</td>
+		</tr>
+		{%endfor%}
+    </table>
+</body>
+</html>

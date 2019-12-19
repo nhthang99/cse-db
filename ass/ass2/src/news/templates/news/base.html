@@ -1,0 +1,42 @@
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+{% load staticfiles %}
+
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" href="{% static './css/style.css' %}">
+{% block style %}{% endblock %}
+
+{% block javascript %}{% endblock %}
+<body>
+<div class="header">
+        <div class="page">
+          <nav class="menu">
+            <ul class="menu__list">
+              <li class="menu__group"><a href="/" class="menu__link">Trang chủ</a></li>
+              <li class="menu__group"><a href="/addDrink/" class="menu__link">Thực Đơn</a></li>
+              <li class="menu__group"><a href="/news/" class="menu__link">Tin Tức</a></li>
+              <li class="menu__group"><a href="/cart/" class="menu__link">Đơn Hàng</a></li>
+              <li class="menu__group"><a href="/profile/" class="menu__link">Quản lí</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="cover-img"></div>
+      
+      {% block body %}
+        
+      {% endblock body %}
+        
+      
+      <!-- <div class="left-content">
+          {% block left_content %}{% endblock %}
+      </div>
+      <div class="right-content">
+        {% block right_content %}{% endblock %}
+      </div>
+      <div class="content">
+          {% block content %}{% endblock %}
+      </div> -->
+
+    </body>

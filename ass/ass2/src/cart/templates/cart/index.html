@@ -1,0 +1,59 @@
+{% extends 'cart/base.html' %}
+
+
+{% load staticfiles %}
+
+	{% block title %}WHY{% endblock %}
+	{% block content %}
+	<div>
+		<form method="POST">
+			{%csrf_token%}
+				<input class="quanpropro" type="submit" name="search" value="Search">   
+				<input class="quanprovai" type="text" name="madh" placeholder="Nhập mã đơn hàng phù hợp...">
+		</form>
+		<div>
+			<form method="POST">
+				{% csrf_token %}
+				<input class="quanpropro" name="xoa" type="submit" value="Xoá">
+				<input class="quanprovai" type="text" name="madonhangxoa" placeholder="Nhập mã đơn hàng"  required="required">
+			</form>
+			</div>
+			<div>
+				<form method="POST">
+					{% csrf_token %}
+					<input class="quanpropro" name="sua" type="submit" value="Sửa">
+					<input class="quanprovai" type="text" name="madonhangsua" placeholder="Nhập mã đơn hàng"  required="required">
+					<input class="quanprovai" type="text" name="SDT" placeholder="Nhập SĐT"  required="required">
+				</form>
+				</div>
+			</div>x
+		<table >
+			<tr style="background-color: skyblue;">
+				<th>Mã</th>
+				<th>Thời gian đặt hàng</th>
+				<th>Tỉnh(TP)</th>
+				<th>Số nhà</th>
+				<th>Đường</th>
+				<th>Quận(Huyện)</th>
+				<th>Phí Ship</th>
+				<th>Mã Khách</th>
+				<th>Mã KM</th>
+				<th>SDT</th>
+			</tr>
+			{%for x in donhang.donhang%}
+			<tr>
+				<td>{{x.0}}</td>
+				<td>{{x.1}}</td>
+				<td>{{x.2}}</td>
+				<td>{{x.3}}</td>
+				<td>{{x.4}}</td>
+				<td>{{x.5}}</td>
+				<td>{{x.6}}</td>
+				<td>{{x.7}}</td>
+				<td>{{x.8}}</td>
+				<td>{{x.9}}</td>
+			</tr>
+			{%endfor%}
+		</table>
+		{% endblock %}     
+

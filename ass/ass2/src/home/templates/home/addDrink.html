@@ -1,0 +1,285 @@
+{% extends './base.html' %}
+
+
+{% block title %}Add Drink{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+    function viewDrinkMenu(){
+        $.ajax({
+        url: 'request/',
+        method: 'POST',
+        data: {
+            'so': 123
+        },
+        headers: {
+            "X-CSRFToken": "{{csrf_token}}"
+        }
+        }).done(function(data){
+            datadrink = data
+            viewDrink = `<div id="view-drink" class="view-drink">
+            <div id="menu-cfs" class="menu-cfs">`;
+            for(var i = 0; i < datadrink['mon'].length; i++){
+                viewDrink += `
+                <div class="gallery">
+                <a target="_blank" href=""><img src="`+datadrink['mon'][i][3]+`"></a>
+                <div class="desc">`+datadrink['mon'][i][0]+`</div>
+                <div class="page">
+                <div class="page__toggle">
+                <label class="toggle">
+                <input id="sel" class="toggle__input" type="checkbox" value="`+datadrink['mon'][i][0]+`">
+                <span class="toggle__label">
+                <span class="toggle__text"></span>
+                </span>
+                </label>
+                </div>
+                <button class="change" id="change" value="`+datadrink['mon'][i][0]+`">Change</button>
+                </div>
+                </div>`
+            }
+            viewDrink += `</div>
+            </div>`
+            $("#view-drink").replaceWith(viewDrink)
+
+
+            viewType = `<select name="field4" id="type" class="field-select">`;
+            for(var i = 0; i < datadrink['type'].length; i++){
+                viewType += `
+                <option style= "text-transform: capitalize;" value="`+datadrink['type'][i][0]+`">`+datadrink['type'][i][0]+`</option>
+                `
+            }
+            viewType += `<option value="Khác">Khác</option>
+            </select>`
+            $("#type").replaceWith(viewType)
+
+      })
+    }
+    viewDrinkMenu();
+    $(document).ready(function(){
+        $("#submit").click(function(){
+            var name = $("#name").val();
+            var amount = document.getElementById("amount").value;
+            var type = document.getElementById("type").value;
+            if (type == "Khác"){
+                type = document.getElementById("other").value;
+            }
+            var image = document.getElementById("image").value;
+            if(name == "" || amount == "" || type == "" || image == "")
+            alert("Không được phép bỏ trống!")
+            else{
+                $.ajax({
+                    url:  'add/',
+                    method: 'POST',
+                    data: {
+                        "name": name,
+                        "amount": amount,
+                        "type": type,
+                        "image": image
+                    },
+                    headers: {
+                        "X-CSRFToken": "{{csrf_token}}"
+                    }
+                }).done(function(){
+            viewDrinkMenu();
+        })
+            }
+        })
+
+        $("#del").change(function(){
+            console.log(123456)
+        })
+
+      $("#type").click(function(){
+        if($(this).val() == "Khác"){
+            $("#otherform")[0].style.display = "block"
+        }
+        else {
+            $("#otherform")[0].style.display = "none"
+        }
+      })
+
+
+      $("#confirm").click(function(){
+        $("#deleteconfirm")[0].style.display = "block"
+      })
+
+
+      $("#del").click(function(){
+        var name = $("#sel:checked").map(function(){
+                return $(this).val()
+            }).get().join(',')
+            $.ajax({
+                url: 'del/',
+                method: 'POST',
+                data: {
+                    "name": name
+                },
+                headers: {
+                    "X-CSRFToken": "{{csrf_token}}"
+                }
+            }).done(function(){
+                viewDrinkMenu();
+            })
+      })
+
+    $("#changebtn").click(function(){
+        var key = $("#key").val()
+        var name = $("#namechange").val();
+        var amount = document.getElementById("amountchange").value;
+        var type = document.getElementById("typechange").value;
+        if (type == "Khác"){
+                type = document.getElementById("otherchange").value;
+            }
+        if(name == "" || amount == "" || type == "" || image == "")
+        alert("Không được phép bỏ trống!")
+        else{
+            $.ajax({
+                url:  'change/',
+                method: 'POST',
+                data: {
+                    "key": key,
+                    "name": name,
+                    "amount": amount,
+                    "type": type
+                },
+                headers: {
+                    "X-CSRFToken": "{{csrf_token}}"
+                }
+            }).done(function(){
+            viewDrinkMenu();
+            })
+        }
+    })
+
+
+    $(".change").click(function(){
+        name = $(this)[0].value;
+        $.ajax({
+            url: 'changedata/',
+            method: 'POST',
+            data: {
+                "name": name
+            },
+            headers: {
+                "X-CSRFToken": "{{csrf_token}}"
+            }
+        }).done(function(data){
+            var dataget = data
+            var viewchangeform = `
+            <div id="changeform" class="changeform">
+                        <form>
+                        <ul class="">
+                            <div class="menu-text">Sửa Món:</div>
+                        <li>    
+                        <label>Tên Món <span class="required">*</span></label>
+                        <input id="key" type="hidden" value="`+name+`" />        
+                    <input id="namechange" class="field-long" value="`+dataget['mon'][0][0]+`" />
+                    </li>
+                    <li>
+                    <label>Số Lượng <span class="required">*</span></label>
+                    <input id="amountchange" class="field-long" value="`+dataget['mon'][0][1]+`" />
+                    </li>
+                    <li>
+                    <label>Loại</label>`
+                    viewchangeform += `<select name="field4" id="typechange" class="field-select">`;
+                    for(var i = 0; i < dataget['type'].length; i++){
+                    viewchangeform += `
+                    <option style= "text-transform: capitalize;" value="`+dataget['type'][i][0]+`">`+datadrink['type'][i][0]+`</option>
+                    `
+                    }
+                    // viewchangeform += `<option value="Khác">Khác</option>
+                    `</select>
+                    </li>
+                    <li style="display: none;" id="otherformchange">
+                    <label>Khác <span class="required">*</span></label>
+                    <input id="other" value="`+dataget['mon'][0][2]+`" placeholder="Khác" class="field-long" />
+                    </li>
+                    <li>
+                    </li>
+                    </ul>
+                    </form>
+                    </div>`
+                    $("#changeevent")[0].style.display = "block"
+                    $("#changeform").replaceWith(viewchangeform)
+                    viewDrinkMenu();
+                })
+    })
+
+    $("#find").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#menu-cfs .gallery").filter(function() {
+          $(this).toggle($(this.children[1]).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+});
+</script>
+
+{% endblock %}
+
+{% block left_content %}
+<div class="left-content">
+<form>
+    <ul class="form-style-1">
+        <div class="menu-text">Thêm Món:</div>
+
+        <li>    
+            <label>Tên Món <span class="required">*</span></label>
+            <input id="name" class="field-long" />
+        </li>
+        <li>
+            <label>Số Lượng <span class="required">*</span></label>
+            <input id="amount" class="field-long" value="0" />
+        </li>
+        <li>
+            <label>Loại</label>
+            <select name="field4" id="type" class="field-select">
+            </select>
+        </li>
+        <li style="display: none;" id="otherform">
+            <label>Khác <span class="required">*</span></label>
+            <input id="other" placeholder="Khác" class="field-long" />
+        </li>
+        <li>
+            <label>Link Hình Ảnh <span class="required">*</span></label>
+            <input id="image" class="field-long" placeholder="Trống.." />
+        </li>
+        <li>
+
+            <button id="submit" type="button">Thêm</button>
+        </li>
+    </ul>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="menu-text">MENU</div>
+    <input type="text" id="find" class="find" placeholder="Tìm kiếm....">
+    <div id="view-drink" class="view-drink">    </div>
+
+{% endblock %}
+
+{% block right_content %}
+<div class="right-content">
+
+    <ul class="form-style-1">
+        <div class="menu-text">Xoá Món:</div>
+        <button id="confirm" type="button">Xác Nhận</button>
+        <div id="deleteconfirm" class="deleteconfirm" style="display: none;">
+            <button id="del" type="button">Có</button>
+            <button id="cancel" class="cancel" type="button">Không</button>
+        </div>
+    </ul>
+    <ul class="form-style-1" style="display: none;" id="changeevent">
+
+        <div id="changeform" class="changeform"></div>
+        <button id="changebtn" type="button" style="margin-left: 40px;">Change</button>
+    </ul>
+</div>
+{% endblock %}

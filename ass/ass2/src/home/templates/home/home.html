@@ -1,0 +1,35 @@
+{% extends './base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!-- <a href="">link text</a> -->
+  <div class="menu-cf">
+    <div class="menu-text">MENU</div>
+
+    <div id="menu-cfs" class="menu-cfs">
+      {% for i in da.mon %}
+      <div class="gallery">
+      <a target="_blank" href=""><img src="{{i.3}}"></a>
+      <div class="desc">{{i.0}}</div>
+      </div>
+      {%endfor%}
+    </div>
+
+    <a class="more" href="/addDrink">XEM THÊM...</a>
+  </div>
+  <br>
+  <br>
+  <div class="menu-news">
+    <a class="menu-text">TIN TỨC</a>
+    <!-- <form action="" method="POST">
+    {%csrf_token%}
+    <div>
+    <input name="lalala">
+  </div>
+    <div>lalala</div>
+    <input type="submit" value="aaaa">
+  </form> -->
+  </div>
+{% endblock %}

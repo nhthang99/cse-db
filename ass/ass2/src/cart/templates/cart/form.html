@@ -1,0 +1,45 @@
+{% extends 'cart/base.html' %}
+
+
+
+
+  {% block title %}Document{% endblock %}
+
+
+  {% block content %}
+    <form method="POST">
+        {%csrf_token%}
+    <div class="form-detail">
+      <div class="form-info col-md-12 col-xs-12">
+        <div class="group">      
+          <input name="tinh" class="control-custom" type="text" required="required"/>
+          <span class="bar"></span>
+          <label>Tỉnh(TP)</label>
+        </div>
+        <div class="group">      
+          <input name="sonha" class="control-custom" type="text" required="required"/>
+          <span class="bar"></span>
+          <label>Số nhà</label>
+        </div>
+        <div class="group">      
+          <input name="tenduong" class="control-custom" type="text" required="required"/>
+          <span class="bar"></span>
+          <label>Đường</label>
+        </div>
+        <div class="group">      
+          <input name="huyen" class="control-custom" type="text" required="required"/>
+          <span class="bar"></span>
+          <label>Quận(Huyện)</label>
+        </div>
+        <div class="group">      
+          <input name="phone" class="control-custom" type="text" required="required"/>
+          <span class="bar"></span>
+          <label>SĐT</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-button text-center">
+      <input class="btn btn-info" type="submit" value="Tạo địa chỉ">
+    </div>
+</form> 
+{% endblock %}     

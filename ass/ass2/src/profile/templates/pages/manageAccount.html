@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>View_pUser</title>
+</head>
+<style>
+    #btn{
+			padding: 10px;
+			margin-left: 1000px;
+			border-radius: 5px;
+			background-color: #27ae60;
+			color: #ecf0f1;
+			text-decoration: none;
+			font-weight: bold;
+			transition: color 0.5s, background-color 0.5s;
+	}
+    #btn:hover{
+			background-color: #ecf0f1;
+			color: #27ae60;
+	}
+    #body {
+        background-image: url(http://evye.gr/wp-content/uploads/2018/03/wallpaper-website-background-dark-wooden-website-background.jpg);
+    }
+    #format_h1{
+        color: #f5f6fa
+    }
+    #format_input{
+        height: 30px;
+        width: 200px;
+    }
+    #format_btn{
+        height: 20px;
+        width: 100px;
+    }
+</style>
+<body id="body">
+    <h1 id="format_h1">DANH SÁCH TÀI KHOẢN</h1>
+    <table border="1" bgcolor = #78e08f>
+        <tr bgcolor = #eb2f06>
+            <th>ID</th>
+            <th>Họ</th>
+            <th>Tên</th>
+            <th>Tên đường</th>
+            <th>Số nhà</th>
+            <th>Tỉnh/ Thành phố</th>
+            <th>Giới tính</th>
+            <th>Username</th>
+            <th>Password</th>
+        </tr>
+        {%for x in thanh.account%}
+		<tr>
+			<td>{{x.0}}</td>
+			<td>{{x.1}}</td>
+			<td>{{x.2}}</td>
+			<td>{{x.3}}</td>
+			<td>{{x.4}}</td>
+			<td>{{x.5}}</td>
+			<td>{{x.6}}</td>
+			<td>{{x.7}}</td>
+            <td>{{x.8}}</td>
+		</tr>
+		{%endfor%}
+    </table>
+    <p></p>
+    <h1 id="format_h1">THAY ĐỔI MẬT KHẨU</h1>
+    <form method="GET">
+        <input id="format_input" type="text" placeholder="ID muốn cập nhật mật khẩu" name = "updateID"/>
+        <p></p>
+        <input id="format_input" type="text" placeholder="Password" name = "updatePassword"/>
+        <p></p>
+        <input type="submit" value="Cập nhật" name = "update">
+    </form>
+    <p></p>
+    <h1 id="format_h1">XÓA TÀI KHOẢN</h1>
+    <form method="GET">
+        <span style="font-size:20px" style="color:#ecf0f1;">Xóa theo</span>
+			<select name = "deleteType">
+				<option>ID</option>
+				<option>Tên</option>
+				<option>Username</option>
+			</select>
+        <input type="text" placeholder="So trùng nội dung để xóa" name = "deleteContent"/>
+        <input type="submit" value="Xóa" name = "delete">
+    </form>
+    <a id="btn" href="searchAccount/">Tìm kiếm tài khoản</a>
+</body>
+</html>

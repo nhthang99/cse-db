@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tìm kiếm</title>
+</head>
+<body>
+    
+    {% for n in news_search %}
+        <h1>{{ n.0 }} - {{ n.1 }} - {{ n.2 }}</h1>
+    {% endfor %}
+        
+</body>
+</html>

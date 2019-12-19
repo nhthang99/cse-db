@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Log in</title>
+	</head>
+	<style>
+		body{
+			background-color: #3498db;
+		}
+		#box{
+			width: 600px;
+			height: 600px;
+			background-color: purple;
+			background-image: url(https://photo-3-baomoi.zadn.vn/w1000_r1/2018_11_06_252_28473305/644cda2594647d3a2475.jpg);
+			margin: 0 auto;
+			border: 1px solid black;
+		}
+		#boxForm{
+			margin-top: 260px;
+			margin-left: 100px;
+			margin-right: 100px;
+			background-color: #f6e58d;
+			border: 1px solid #f6e58d;
+			border-radius: 10px;
+		}
+		#form{
+			margin: 20px;
+			border: 1px solid #f6e58d;
+			font-size: 20px;
+			position: relative; 
+		}
+		#form input{
+			width: 250px;
+			height: 20px;
+			position: absolute;
+			right: 10px;
+		}
+		#btn{
+			padding: 10px;
+			margin-left: 150px;
+			border-radius: 5px;
+			background-color: #27ae60;
+			color: #ecf0f1;
+			text-decoration: none;
+			font-weight: bold;
+			transition: color 0.5s, background-color 0.5s;
+		}
+		#btn:hover{
+			background-color: #ecf0f1;
+			color: #27ae60;
+		}
+		#logup{
+			margin-left: 50px;
+			font-style: italic;
+		}
+	</style>
+	<body>
+		<div id="box">
+			<form id="boxForm" method="GET">
+				{% csrf_token %}
+				<div id="form">
+					<span>Username</span>
+					<input type="text" name="Username">
+				</div>
+				<div id="form">
+					<span>Password</span>
+					<input type="Password" name="Password">
+				</div>
+				<input id="btn" type="submit" name="" value="Đăng nhập">
+				<p id=logup>
+					Chưa có tài khoàn khoản, đăng ký ngay
+					<a href="logup/">tại đây</a>
+				</p>				
+			</form>			
+		</div>		
+	</body>
+</html>
